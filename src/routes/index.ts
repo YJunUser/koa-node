@@ -1,14 +1,7 @@
-import * as fs from 'fs';
-import * as Koa from 'koa';
+import * as Router from 'koa-router';
+import user from '../controllers/user';
+const router = new Router();
 
-const Routing = (app: Koa) => {
-  fs.readdirSync(__dirname).forEach(async (file) => {
-    if (file === 'index.ts') {
-      return;
-    }
-    const router = await import(`./${file}`);
-    app.use(router.default.routes()).use(router.default.allowedMethods());
-  });
-};
+router.get('/user/login', user.find);
 
-export default Routing;
+export default router;
