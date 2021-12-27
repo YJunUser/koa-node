@@ -2,3 +2,12 @@
 [2021-12-20T22:19:25.207] [ERROR] app - Not Found: 404
 [2021-12-20T22:19:25.208] [ERROR] app - Not Found
 [2021-12-20T22:19:53.080] [ERROR] app - username is wrong type
+[2021-12-26T20:54:17.650] [ERROR] app - ENOENT: no such file or directory, scandir '../source/posts'
+[2021-12-26T20:54:42.159] [ERROR] app - ENOENT: no such file or directory, scandir '../source/posts'
+[2021-12-26T20:55:21.814] [ERROR] app - ENOENT: no such file or directory, scandir '../source/posts'
+[2021-12-26T20:55:39.432] [ERROR] app - ENOENT: no such file or directory, scandir '../source/posts'
+[2021-12-26T21:02:00.720] [ERROR] app - ENOENT: no such file or directory, open '/Users/yaobojun/Hacking/Node/koa-node/src/source/postsCss in Js-emotion.md'
+[2021-12-26T21:32:12.563] [ERROR] app - Cannot read properties of null (reading '1')
+[2021-12-26T21:34:29.428] [ERROR] app - Cannot read properties of null (reading '1')
+[2021-12-26T21:34:46.800] [ERROR] app - Cannot read properties of null (reading '1')
+[2021-12-26T21:37:07.800] [ERROR] app - Cannot read properties of null (reading '1')
