@@ -23,8 +23,6 @@ class ArticlesService {
       data.push(imp);
     }
 
-    console.log('data: ', data);
-
     return data;
   }
 }

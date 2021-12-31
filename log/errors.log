@@ -11,3 +11,9 @@
 [2021-12-26T21:34:29.428] [ERROR] app - Cannot read properties of null (reading '1')
 [2021-12-26T21:34:46.800] [ERROR] app - Cannot read properties of null (reading '1')
 [2021-12-26T21:37:07.800] [ERROR] app - Cannot read properties of null (reading '1')
+[2021-12-31T18:30:12.806] [ERROR] app - Not Found: 404
+[2021-12-31T18:30:12.807] [ERROR] app - Not Found
+[2021-12-31T18:34:27.776] [ERROR] app - Not Found: 404
+[2021-12-31T18:34:27.777] [ERROR] app - Not Found
+[2021-12-31T18:34:33.262] [ERROR] app - Not Found: 404
+[2021-12-31T18:34:33.263] [ERROR] app - Not Found
