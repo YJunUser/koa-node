@@ -1,8 +1,9 @@
 set -e
 
 path=`pwd`
-mv ${path}/src/source ./dist
 npm install
 npm run compile
+cp -r ${path}/src/source ./dist/source
+
 
 pm2 start ./dist/app.js

@@ -55,6 +55,6 @@ app.use(async (ctx: Koa.Context) => {
   log.error('Not Found: 404');
   ctx.throw('Not Found', 404);
 });
-app.listen(4000, 'localhost', () => {
+app.listen(3000, 'localhost', () => {
   console.log('server is running at 3000');
 });
