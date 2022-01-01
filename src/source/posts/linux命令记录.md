@@ -1,5 +1,5 @@
 ---
-title: linux常用命令
+title: linux命令记录
 date: 2021/12/15
 tags: nodejs
 categories: 运维

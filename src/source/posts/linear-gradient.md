@@ -1,5 +1,5 @@
 ---
-title: CSS linear-gradient函数
+title: linear-gradient
 date: 2021/4/24
 tags: CSS
 categories: Web前端

@@ -7,7 +7,9 @@ introduction: style component 是一个react中写样式经常用的方法，用
 
 ## emotion的安装
 
-<code>yarn add @emotion/react @emotion/styled</code>
+```shell
+yarn add @emotion/react @emotion/styled
+```
 
 
 

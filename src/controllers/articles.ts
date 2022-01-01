@@ -8,6 +8,14 @@ class ArticlesController {
       data: articles,
     };
   }
+
+  public getArticleByPath(ctx: Context) {
+    const { path } = ctx.params;
+    const article = ArticlesService.getArticleByPath(path);
+    ctx.body = {
+      data: article,
+    };
+  }
 }
 
 export default new ArticlesController();

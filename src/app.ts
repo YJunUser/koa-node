@@ -3,7 +3,7 @@ import * as BodyParser from 'koa-bodyparser';
 import catchError from './middleware/catch';
 import validate from './middleware/validate';
 import router from './routes';
-import { log } from './utils';
+import { log } from './log';
 
 const app = new Koa();
 

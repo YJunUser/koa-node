@@ -1,5 +1,5 @@
 ---
-title: 用url参数来管理项目模态框状态
+title: 用url参数管理项目模态框状态
 date: 2021/5/23
 tags: React
 introduction: 需求中经常遇到url和项目状态绑定的情况，比如根据url直接进入特点的页面，或者根据url填入特定的input参数

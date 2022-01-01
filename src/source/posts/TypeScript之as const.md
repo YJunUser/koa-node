@@ -1,5 +1,5 @@
 ---
-title: TypeScript-as const应用
+title: TypeScript之as const
 date: 2021/5/14
 tags: TypeScript
 categories: Web前端

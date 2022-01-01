@@ -1,5 +1,5 @@
 ---
-title: React跨组件状态管理总结
+title: React跨组件状态管理
 date: 2021/5/29
 tags: React
 categories: Web前端

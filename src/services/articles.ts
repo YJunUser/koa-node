@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import Marked from '../utils/marked';
 
 class ArticlesService {
   public getAllArticles() {
@@ -24,6 +25,18 @@ class ArticlesService {
     }
 
     return data;
+  }
+
+  public getArticleByPath(articlePath: string) {
+    const dirPath = path.join(__dirname, '../source/posts');
+
+    const article = fs
+      .readFileSync(dirPath + '/' + articlePath + '.md', {
+        encoding: 'utf-8',
+      })
+      .toString();
+
+    return Marked.parse(article);
   }
 }
 

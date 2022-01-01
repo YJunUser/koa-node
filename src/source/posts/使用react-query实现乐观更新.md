@@ -1,5 +1,5 @@
 ---
-title: react-query实现乐观更新
+title: 使用react-query实现乐观更新
 date: 2021/5/26
 tags: React
 introduction: react-query是我最近使用的一个react状态管理库，乐观更新是一种常见的需求场景，react-query可以很轻易的实现它

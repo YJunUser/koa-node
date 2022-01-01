@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import { log } from '../utils';
+import { log } from '../log';
 
 const catchError = async (ctx: Context, next: () => Promise<any>) => {
   try {

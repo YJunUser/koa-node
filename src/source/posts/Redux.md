@@ -1,5 +1,5 @@
 ---
-title: react-redux
+title: Redux
 date: 2021/5/22
 tags: React
 categories: Web前端
