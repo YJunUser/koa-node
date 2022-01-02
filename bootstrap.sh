@@ -1,5 +1,6 @@
 set -e
 
+rm -rf ./dist
 path=`pwd`
 npm install
 npm run compile
