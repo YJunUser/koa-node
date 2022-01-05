@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { compareTime } from '../utils';
 import Marked from '../utils/marked';
 
 class ArticlesService {
@@ -23,6 +24,11 @@ class ArticlesService {
       };
       data.push(imp);
     }
+
+    data.sort((a, b) => {
+      if (compareTime(a.date, b.date)) return -1;
+      return 1;
+    });
 
     return data;
   }
