@@ -1,7 +1,7 @@
 ---
 title: linux命令记录
 date: 2021/12/15
-tags: nodejs
+tags: linux
 categories: 运维
 introduction: linux命令是程序员的必修课，以前只知道用，现在把自己用到的都写一下记录
 ---
