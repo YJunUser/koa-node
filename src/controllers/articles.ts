@@ -10,6 +10,11 @@ class ArticlesController {
   }
 
   public getArticleByPath(ctx: Context) {
+    ctx.verifyParam({
+      name: 'path',
+      type: 'string',
+      required: true,
+    });
     const { path } = ctx.params;
     const article = ArticlesService.getArticleByPath(path);
     ctx.body = {

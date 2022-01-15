@@ -36,6 +36,19 @@ select version();
 Select * from ${tableName};
 # 查看表结构
 desc ${tableName};
+
+# 模糊查询 like
+# %匹配任意个字符 一个下划线只匹配一个字符 可以加转义字符查自己
+# 找出名字中含有O的
+select ename from EMP where ename like '%O%';
+# 找出以T结尾
+select ename from EMP where ename like '%T';
+# 找出第二个字母是A
+select ename from EMP where ename like '_A%';
+
+# 排序
+
+
 ```
 
 ## Note

@@ -24,3 +24,7 @@
 [2022-01-01T14:02:07.768] [ERROR] app - ENOENT: no such file or directory, open '/Users/yaobojun/Hacking/Node/koa-node/src/source/posts/ReactNative中封装一个组件.md'
 [2022-01-01T14:02:18.451] [ERROR] app - ENOENT: no such file or directory, open '/Users/yaobojun/Hacking/Node/koa-node/src/source/posts/ReactNative中封装一个组件.md'
 [2022-01-01T14:02:43.783] [ERROR] app - ENOENT: no such file or directory, open '/Users/yaobojun/Hacking/Node/koa-node/src/source/posts/ReactNative中封装一个组件.md'
+[2022-01-15T15:56:37.698] [ERROR] app - ctx.verifyParams is not a function
+[2022-01-15T15:57:11.236] [ERROR] app - ctx.verifyParams is not a function
+[2022-01-15T15:57:22.987] [ERROR] app - ctx.verifyParams is not a function
+[2022-01-15T15:58:49.672] [ERROR] app - ctx.verifyParams is not a function
