@@ -121,7 +121,7 @@ export enum TokenType {
 
 在根目录执行<code>npm run tes</code>
 
-![img](/images/artical-image/image-20210426163128179.png)
+![img](../images/artical-image/image-20210426163128179.png)
 
 得到编译后结果。
 

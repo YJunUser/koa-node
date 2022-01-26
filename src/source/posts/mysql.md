@@ -38,6 +38,8 @@ Select * from ${tableName};
 # 查看表结构
 desc ${tableName};
 
+# in not in
+select ename from emp where ename in ('MANAGER', 'SALESMAN');
 # 模糊查询 like
 # %匹配任意个字符 一个下划线只匹配一个字符 可以加转义字符查自己
 # 找出名字中含有O的
@@ -118,6 +120,101 @@ select deptno, job, max(sal) from emp group by deptno, job;
 # having语句，对分组后进一步过滤，不能单独使用
 select deptno, max(sal) from emp group by deptno having max(sal) > 3000;
 上面的效率比较低，可以先用where筛选掉3000以下的，再进行分组，优先选择where，where不行再用having
+
+# 把查询结果去重 disctinct只能出现在所有字段的最前方
+select distinct job from emp;
+select count(distinct(job)) from emp;
+
+# 连接查询
+# 如果两张表连接没有任何限制： 笛卡尔积 14行 * 4行
+select ename, dname from emp, dept;
+select ename, dname from emp, dept where emp.deptno = dept.deptno;
+# 提高效率 起别名
+select e.ename, d.dname from emp e, dept d where e.deptno = d.deptno;
+
+# 内连接显示所有匹配到的数据
+# 内连接-等值连接
+SQL92: # 基本不用
+select e.ename, d.dname
+from emp e, dept d
+where e.deptno = d.deptno;
+# 不占用where inner可省略
+SQL99:
+select e.ename, d.dname
+from emp e
+inner join
+dept d
+on e.deptno = d.deptno
+where ...
+# 内连接-非等值连接
+select e.ename, s.grade
+from emp e inner join salgrade s
+on
+e.sal between s.losal and s.hisal;
+# 内连接-自连接
+select a.ename as '员工', b.ename as '领导'
+from emp a inner join emp b
+on
+a.mgr = b.empno;
+
+# 外连接 匹配不上的也查出来 查询结果条数一定大于内连接
+# 任何一个左连接都有右连接的写法，反之同理
+# 右外连接 把join右边的表没匹配上的也查出来，即右边为主表，所有数据都要查出来
+select e.ename, d.dname
+from emp e right join dept d
+on e.deptno = d.deptno;
+# 显示所有员工名字和其领导名
+select a.ename, b.ename
+from emp a left join emp b
+on a.mgt = b.empno;
+
+# 多表连接
+select ...
+from 
+a
+join
+b
+on
+...
+join
+c
+on
+...
+right join d
+on
+...
+
+select e.ename, e.sal, d.dname, s.grade
+from
+emp e left join dept d
+on e.deptno = d.deptno
+join salgrade s
+on e.sal between s.losal and s.hisal;
+
+# 子查询 select语句中嵌套select语句 先执行子查询
+select 
+  ..(select)
+from
+  ..(select)
+where
+  ..(select)
+# 找出比最低工资高的员工姓名和工资 where中的子查询
+select e.sal from emp e where e.sal > (select min(sal) from emp);
+# 找出每个岗位平均工资的等级 from中的子查询，查询结果可当一张临时表
+select t.*, s.grade
+from (select job, avg(sal) as avgSal from emp group by job) t
+inner join salgrade s
+on t.avgSal between s.losal and s.hisal;
+
+# union 合并查询结果集 union把乘法变成了加法 减少了匹配次数
+# 要求列数和列的数据类型必须一致
+select ename, job from emp where job = 'MANAGER'
+union
+select ename, job from emp where job = 'SALESMAN';
+
+# limit 将查询结果一部分取出来， 通常用于分页
+
+
 
 ```
 
