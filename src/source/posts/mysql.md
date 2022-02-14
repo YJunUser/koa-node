@@ -75,8 +75,13 @@ select length(ename) as lengthEname from emp;
 # trim 去空格
 select trim(ename) as ename from emp;
 # str_to_date 字符串转日期
-# date_format 格式化日期
+# 把varchar类型转换为date类型 通常用于insert
+str_to_date('1999-01-23', '%Y-%m-%d');
+# date_format 格式化日期 通常用于查询
+# select展示的都是字符串，查询时数据库默认也会将date类型转为varchar，date_format可以指定转化的格式
+select id, name, date_format(birth, '%m/%d/%Y') as birth from t_user;
 # format 设置千分位
+select ename, format(sal, '$999,999') from emp;
 # round 四舍五入
 # rand 随机数
 select rand() from emp;
@@ -213,8 +218,112 @@ union
 select ename, job from emp where job = 'SALESMAN';
 
 # limit 将查询结果一部分取出来， 通常用于分页
+# limit 在orderby之后执行
+# 完整用法 limit startIndex, length
+select ename, sal from emp order by sal desc limit 0, 5;
+# 缺省用法 取前5
+select ename, sal from emp order by sal desc limit 5;
+# 分页
+select ... from ... limit ${(pageNo - 1) * pageSize}, ${pageSize}
+
+# DQL
+select
+...
+from
+...
+where
+...
+group by
+...
+having
+...
+order by
+...
+limit
+...
 
 
+# 建表
+create table 表名(
+	字段名1 数据类型,
+	字段名2 数据类型
+);
+表名建议以t_或tbl_开始
+
+create table t_student(
+	no int(3),
+	name varchar(32),
+	sex char(1) default 'm', 默认值
+	age int(3),
+	email varchar(255)
+);
+# 将查询结果当一张表新建
+create table emp2 as select * from emp;
+
+# 数据类型
+varchar 可变长度字符串 varchar(10) 最多10个 动态分配空间 最长255
+char 定长 不管数据长度 分配固定长度空间去存储 最长255
+int 最长11 int(3) 建议长度为3
+bigint
+float
+double
+date 短日期 str_to_date转化varchar到date 只包括年月日 %Y-%m-%d
+datetime 长日期 年月日时分秒 %Y-%m-%d %h:%i:%s
+# now() 获取系统当前时间 datetime类型
+clob 字符大对象 最多可以存储4g字符串 超过255就用这个
+blob 二进制大对象 图片 声音 视频等流媒体数据
+
+# 删表
+drop table t_student if exists;
+
+# 插入数据 insert 成功必然会多一条记录 默认值为null 可插入多条
+insert into 表名(字段名1, 字段名2) values(值1, 值2)
+insert into t_student(no, name, sex, age, email) values(3, 'zhangsan', 'm', 23, '1231231@131.com');
+# 将查询结果插入一张表 基本不用
+insert into t_student select * from t_student;
+# 更新数据 update
+update t_student set name = 'yaobojun', age = 24 where no = 3; 
+# 删除 delete 只删除数据 没有释放内存 可回滚
+delete from t_student where no = 3;
+delete from t_student; # 删除所有
+# truncante 物理删除 无法回滚 快
+truncate table t_student;
+
+# 对表结构进行修改 alter
+
+# 约束
+非空约束 (not null)
+唯一约束 (unique) 可以为null
+主键约束 (primary key PK)
+外键约束 (foreign key FK)
+检查约束 (mysql不支持 orcale支持)
+
+create table t_vip(
+	id int not null,
+	name varchar(255) unique,
+	email varchar(255),
+	tel varchar(255),
+	unique(email, tel) # 两个字段联合起来唯一
+	xx int not null unique, # 就等于主键 PK
+	# 在mysql中 如果一个字段被not null和unique 自动成为主键
+	primary key(id, name) # 复合主键
+	# 一张表 主键约束只能有一个 主键值一般是定长数字 建议
+	# 不建议主键和业务挂钩 主键保证唯一性就行
+	xx primary key auto_increment, # 从1开始以1自增 
+)
+
+create table t_class(
+	classno int primary key,
+	classname varchar(255)
+);
+
+create table t_student(
+	no int primary key auto_increment,
+	name varchar(255),
+	cno int,
+	# 外键约束 保证这个数据其他表里是存在的 被引用的不一定是其他表的主键 但至少是有unique约束的 外键值可以为null
+	foreign key (cno) references t_class(classno)
+);
 
 ```
 
