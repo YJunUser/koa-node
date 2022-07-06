@@ -28,13 +28,13 @@ introduction: 很少人用到的as const哈哈哈，碰到了就写下
 const a = ["jack", 1, { id: "5" }];
 ```
 
-![image-20210514184447025](images/artical-image/image-20210514184447025.png)
+![image-20210514184447025](../images/artical-image/image-20210514184447025.png)
 
 a是一个元素为<code>string</code>或者<code>number</code>或者含有id对象的数组，这明显与我们的预期不符，因为我们想要一个元素为string | number | object的数组，主要原因是ts中的数组里面的类型必须一致，所以他会解析成上面那种情况。
 
 如果我们加上<code>as const</code>呢?
 
-![image-20210514184705302](images/artical-image/image-20210514184705302.png)
+![image-20210514184705302](../images/artical-image/image-20210514184705302.png)
 
 a变成了一个数组，里面第一个元素是'jack'，第二个是1，第三个是对象
 

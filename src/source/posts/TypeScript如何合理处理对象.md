@@ -34,7 +34,7 @@ const isNumber = (object: object) => {
 
 这样看上去没什么问题，但是编译器会报错：
 
-![image-20210510173337280](images/artical-image/image-20210510173337280.png)
+![../image-20210510173337280](images/artical-image/image-20210510173337280.png)
 
 上面提示不能用<code>key</code>作为<code>{}</code>类型的索引，但result为什么是<code>{}</code>类型呢？它为什么是个空对象呢?
 

@@ -321,13 +321,97 @@ create table t_student(
 	no int primary key auto_increment,
 	name varchar(255),
 	cno int,
-	# 外键约束 保证这个数据其他表里是存在的 被引用的不一定是其他表的主键 但至少是有unique约束的 外键值可以为null
+	# 外键约束 保证这个数据其他表里是存在的 被引用的不一定是其他表的主键 但至少是有unique约束的 外键值可以为null 外键值不一定是unique的
 	foreign key (cno) references t_class(classno)
 );
 
+# 事务 非常重要 transaction
+一个事物就是一个完整的业务逻辑
+DML：insert update delete
+只有以上三个语句和事务有关，其余没有
+正是因为做某件事的时候需要多条DML语句联合完成，所以需要事务存在
+本质上 一个事务就是多条DML语句同时成功或者同时失败
+
+在事务执行过程中，每一条DML语句都会记录到“事务性活动的日志文件”
+在事务执行过程中，我们可以提交事务，也可以回滚事务
+# 提交事务 commit
+清空日志文件，并把数据持久化到数据库中，标志着全部成功
+# 回滚事务 rollback 回滚到上一次的提交点
+将之前的DML语句全部撤销，并清空日志文件，标志着全部失败
+# mysql默认情况下是自动提交事务的，每执行一次DML语句，自动提交一次
+# 关闭自动提交 start transaction;
+start transaction;
+# 开启事务后，会关闭自动提交，此时执行DML语句后commit才会真正将数据写入，rollback会将DML语句撤销
+
+# 事务的隔离性
+A事务在操作一张表的时候，另一个事务B也在操作这张表会怎样
+# 查看隔离级别
+select @@transaction_isolation;
+# 设置隔离级别
+set global transaction isolation level read committed;
+# 事务与事务之间的隔离级别
+# 事务A可以读取到事务B未提交的数据 容易脏读 大多数数据库隔离级别为二档起步
+读未提交：read uncommitted (最低)
+# 事务A只能读取到事务B提交后的数据 解决脏读 存在不可重复读
+读已提交：read committed
+# 事务A开启后，不管多久，读到的数据都是一致的，即使B事务修改了数据，事务A读到的数据也不会改变 解决不可重复读 存在幻影现象 即读到假数据 读取到的永远都是开启事务时的数据
+可重复读：repeatable read(mysql默认)
+# 最高隔离级别，效率最低 事务排队 不能并发 两个事务在操作同一张表时，后面操作的事务会“卡住”排队，直到前面那个事务commit或rollback后
+序列化：serializable （最高）
+
+# 索引 面试问的多
+索引是在表的字段上添加的，是为了提高查询效率存在的一种机制
+# 任何数据库主键都会自动添加索引
+# mysql查询两种方式
+# 第一种：全表扫描
+select job from emp e where e.name = 'Jack'
+# 第二种：索引检索
+# 添加索引
+create index emp emp_ename_index on emp(ename);
+# 删除
+drop index emp emp_ename_index on emp;
+# 怎么看是否使用了索引检索 type=ref 为索引
+explain select * from emp where enmae = 'jack';
+。。。待续
+
+# 视图 主要作用是简化sql语句
+create view emp_view1 as select * from emp;
+# 可以对视图对象进行增删改查，注意 原表会改变
+insert into emp_view1(id, name) values(2,'ada');
+# 应用
+# 创建视图
+create view emp_dept as
+select e.ename, e.sal, d.dname
+from emp e
+inner join
+dept d
+on
+e.deptno = d.deptno;
+# 查询视图
+select * from emp_dept;
+# 面向视图更新 原表也会该笔
+update emp_dept set sal = 1000 where dname = 'account';
+
+# dba常用命令
+CREATE USER username IDENTIFIED BY 'password';
+# 数据导入导出
+....
+
+# 数据库设计三范式
+第一范式：必须要有主键、并且每一个字段不可再分
+第二范式：第一范式基础上，所有非主键字段全部依赖主键，不要产生部分依赖（多对多场景，复合主键的情况）
+第三范式：第二范式基础上，所有非主键字段全部依赖主键，不要产生传递依赖
+
+# 多对多 三张表 关系表两个外键
+# 一对多 两张表 多的那张表有外键
+# 一对一 实际开发中 字段太庞大 拆分表出现一对一的情况 一对一 两张表 一张表加外键并使外键唯一unique
 ```
 
 ## Note
 ### 数据库中的字符串都是单引号
 ### 数据库中null不能使用=进行衡量，需要使用is null
 ### and优先级比or高
+
+
+
+select t.tag_id, count(t.tag_id) from (select f.user_id, f.item_id, a.tag_id from t_fact_action f INNER JOIN t_action a on f.action_id = a.id) t GROUP BY t.tag_id;

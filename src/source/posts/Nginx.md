@@ -196,7 +196,7 @@ server {
 location / {
 		root /home/yaobojun/site/web-blog/build;
 		index index.html;
-		try_files $uri $uri/ index.html;
+		try_files $uri $uri/ /index.html;
 	}
 # 这里try_files配置后，当我们访问例如/articles 这样的路由， $uri=/articles
 # 他会一层层回溯，如果有/articles或者/articles/的路径，会直接返回，否则会自动发一个请求到 index.html, 然后走到前端的路由控制

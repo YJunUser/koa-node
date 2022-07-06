@@ -281,3 +281,21 @@ class Classic<T extends Sentence & Music> {
 **代码解释：**
 
 第 10 行，约束了泛型参数 `T` 需继承自交叉类型（后续有单节介绍） `Sentence & Music`，这样就能访问两个接口类型的参数。
+
+
+
+## 获取一个对象所有值的类型
+
+```typescript
+const a = {
+  haha: 1,
+  oeoe: 2
+} as const;
+
+type ValueOf<T> = T[keyof T];
+
+// yes
+const t: ValueOf<typeof a> = 1;
+// no
+const t: ValueOf<typeof a> = 3;
+```
