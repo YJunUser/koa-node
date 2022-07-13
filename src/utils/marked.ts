@@ -2,11 +2,10 @@ import { marked, Renderer } from 'marked';
 
 const renderer: Partial<Renderer> = {
   image(href, title, text) {
-    return `<img data-src=${href}></img>`;
+    return `<img data-src=${href} src="/loading.gif" width="100%" height="500px"></img>`;
   },
 };
 
-marked.use({ renderer });
 marked.setOptions({
   renderer: new marked.Renderer(),
   highlight: function (code, lang) {
@@ -24,5 +23,7 @@ marked.setOptions({
   smartypants: false,
   xhtml: false,
 });
+
+marked.use({ renderer });
 
 export default marked;
