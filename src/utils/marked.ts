@@ -2,7 +2,9 @@ import { marked, Renderer } from 'marked';
 
 const renderer: Partial<Renderer> = {
   image(href, title, text) {
-    return `<img data-src=${href} src="/loading.gif" width="100%" height="1000px"></img>`;
+    return `<div style="display: flex; justify-content: center; align-items: center">
+    <img data-src=${href} src="/loading.gif" width="30rem" height="30rem"></img>
+    </div>`;
   },
 };
 
