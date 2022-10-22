@@ -54,7 +54,7 @@ pm2 delete {id}
 pm2 delete all
 # 清除日志
 pm2 flush
-# 传输文件
+# 传输文件 传输目录 scp -r
 scp ~/Hacking/koa-node yaobojun@101.35.46.26:/home/yaobojun/
 # 清除文件内容
 cat /dev/null > a.txt
